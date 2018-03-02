@@ -165,7 +165,10 @@ class aiProViewController: UIViewController {
             }else{
                 aiPlayed = false
                 if (bAiGoesFirst == true ){
-                    _ = aiCornerPlay()
+                    aiPlayed = aiCornerPlay()
+                    if (aiPlayed == false){
+                        _ = aiMiddlePlay()
+                    }
                 }else{
                     if (board[4] == " "){
                         aiSpot = view.viewWithTag(5) as! UIButton
