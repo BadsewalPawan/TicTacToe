@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		302A8A382039A85900AE2CEF /* SelectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A8A372039A85900AE2CEF /* SelectionPageViewController.swift */; };
 		302A8A3A2039AA2B00AE2CEF /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302A8A392039AA2B00AE2CEF /* BackgroundMusic.mp3 */; };
+		3030ADB620496437008B20DF /* FriendlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3030ADB520496437008B20DF /* FriendlyViewController.swift */; };
 		30426283203B0E74005A8A44 /* aiProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30426282203B0E74005A8A44 /* aiProViewController.swift */; };
-		3065E6C42039AFCA00FDB95B /* FriendlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3065E6C32039AFCA00FDB95B /* FriendlyViewController.swift */; };
 		3065E6C62039BA0200FDB95B /* aiBeginnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */; };
 		30E36FAD203997E90045A625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E36FAC203997E90045A625 /* AppDelegate.swift */; };
 		30E36FB2203997E90045A625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E36FB0203997E90045A625 /* Main.storyboard */; };
@@ -21,9 +21,9 @@
 /* Begin PBXFileReference section */
 		302A8A372039A85900AE2CEF /* SelectionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionPageViewController.swift; path = "/Users/Badsewal/Desktop/swift porjects/TicTacToe!/TicTacToe!/SelectionPageViewController.swift"; sourceTree = "<absolute>"; };
 		302A8A392039AA2B00AE2CEF /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundMusic.mp3; sourceTree = "<group>"; };
+		3030ADB520496437008B20DF /* FriendlyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendlyViewController.swift; sourceTree = "<group>"; };
 		303E3B31203DB3E200C89E0D /* TicTacToe!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TicTacToe!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30426282203B0E74005A8A44 /* aiProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiProViewController.swift; sourceTree = "<group>"; };
-		3065E6C32039AFCA00FDB95B /* FriendlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendlyViewController.swift; path = "TicTacToe!.xcodeproj/../FriendlyViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiBeginnerViewController.swift; sourceTree = "<group>"; };
 		30E36FAC203997E90045A625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E36FB1203997E90045A625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 				30E36FAC203997E90045A625 /* AppDelegate.swift */,
 				3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */,
 				30426282203B0E74005A8A44 /* aiProViewController.swift */,
-				3065E6C32039AFCA00FDB95B /* FriendlyViewController.swift */,
+				3030ADB520496437008B20DF /* FriendlyViewController.swift */,
 				302A8A372039A85900AE2CEF /* SelectionPageViewController.swift */,
 				30E36FB0203997E90045A625 /* Main.storyboard */,
 				30E36FB3203997E90045A625 /* Assets.xcassets */,
@@ -144,8 +144,8 @@
 				30426283203B0E74005A8A44 /* aiProViewController.swift in Sources */,
 				3065E6C62039BA0200FDB95B /* aiBeginnerViewController.swift in Sources */,
 				30E36FAD203997E90045A625 /* AppDelegate.swift in Sources */,
+				3030ADB620496437008B20DF /* FriendlyViewController.swift in Sources */,
 				302A8A382039A85900AE2CEF /* SelectionPageViewController.swift in Sources */,
-				3065E6C42039AFCA00FDB95B /* FriendlyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
