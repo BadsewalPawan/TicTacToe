@@ -37,6 +37,17 @@ class aiBeginnerViewController: UIViewController {
                 gameActive = false
                 playAgainbtn.isHidden = false
                 statelbl.isHidden = false
+                for iCount in 1...9{
+                    if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
+                        if (board[iCount-1] == playerAs){
+                            aiSpot = view.viewWithTag(iCount) as! UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                        }else if (board[iCount-1] == aiAs) {
+                            aiSpot = view.viewWithTag(iCount) as! UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                        }
+                    }
+                }
                 return board[combo[0]]
             }
         }; elements = 0; iCount = 0
@@ -49,6 +60,15 @@ class aiBeginnerViewController: UIViewController {
             gameActive = false
             playAgainbtn.isHidden = false
             statelbl.isHidden = false
+            for iCount in 1...9{
+                    if (board[iCount-1] == playerAs){
+                        aiSpot = view.viewWithTag(iCount) as! UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                    }else if (board[iCount-1] == aiAs) {
+                        aiSpot = view.viewWithTag(iCount) as! UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                    }
+            }
             return "Draw"
         }
         return " "
@@ -130,3 +150,4 @@ class aiBeginnerViewController: UIViewController {
     }
 
 }
+

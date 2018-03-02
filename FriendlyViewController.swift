@@ -19,6 +19,7 @@ class FriendlyViewController: UIViewController {
     var iPlayer1Count:Int = 0
     var iDrawCount:Int = 0
     var iPlayer2Count:Int = 0
+    var dummyBtn:UIButton!
     
     @IBOutlet var statelbl: UILabel!
     @IBOutlet var playAgainbtn: UIButton!
@@ -34,6 +35,17 @@ class FriendlyViewController: UIViewController {
             if (board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[0]] == board[combo[2]]){
                 gameActive = false
                 playAgainbtn.isHidden = false
+                for iCount in 1...9{
+                    if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
+                        if (board[iCount-1] == playerAs){
+                            dummyBtn = view.viewWithTag(iCount) as! UIButton
+                            dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                        }else if (board[iCount-1] == aiAs) {
+                            dummyBtn = view.viewWithTag(iCount) as! UIButton
+                            dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                        }
+                    }
+                }
                 return board[combo[0]]
             }
         }; elements = 0; iCount = 0
@@ -45,6 +57,15 @@ class FriendlyViewController: UIViewController {
         if (iCount == 9){
             gameActive = false
             playAgainbtn.isHidden = false
+            for iCount in 1...9{
+                if (board[iCount-1] == playerAs){
+                    dummyBtn = view.viewWithTag(iCount) as! UIButton
+                    dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                }else if (board[iCount-1] == aiAs) {
+                    dummyBtn = view.viewWithTag(iCount) as! UIButton
+                    dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                }
+            }
             return "Draw"
         }
         return " "
@@ -115,3 +136,4 @@ class FriendlyViewController: UIViewController {
     }
 
 }
+
