@@ -22,7 +22,6 @@ class aiProViewController: UIViewController {
     var iDrawCount:Int = 0
     var iAiCount:Int = 0
     var aiSpot:UIButton!
-    var randomSpot:Int!
     var aiPlayed:Bool = false
     var ix:Int = 0
     var iy:Int = 0
@@ -30,8 +29,10 @@ class aiProViewController: UIViewController {
     var iAiAttackingSpot:Int!
     var iAiDefendingSpot:Int!
     var iAiPlaySpot:Int!
-    var aiGoFirst:Bool = false
+    var bAiGoesFirst:Bool = false
     var iRemoveSpot:Int!
+    var iTimer = Timer()
+    var iRandomDelay:Double!
     
     @IBOutlet var statelbl: UILabel!
     @IBOutlet var playAgainbtn: UIButton!
@@ -40,6 +41,7 @@ class aiProViewController: UIViewController {
     @IBOutlet var aiScorelbl: UILabel!
     @IBOutlet var boardHash: UIImageView!
     @IBOutlet var playerNamelbl: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     func checkWinner() -> (String){
         for combo in winningCombos{
@@ -133,6 +135,59 @@ class aiProViewController: UIViewController {
         return false
     }
 
+    @objc func aiGoesFirst(){
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+        if(Int(arc4random_uniform(2)) == 0){
+            _ = aiCornerPlay()
+        }else{
+            aiSpot = view.viewWithTag(5) as! UIButton
+            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+            board[4] = aiAs
+        }
+        
+    }
+    
+    @objc func aiPlay(){
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+        iAiAttackingSpot = aiSearching(target: aiAs)
+        if (iAiAttackingSpot<10){
+            aiSpot = view.viewWithTag(iAiAttackingSpot) as! UIButton
+            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+            board[iAiAttackingSpot-1] = aiAs
+        }else{
+            iAiDefendingSpot = aiSearching(target: playerAs)
+            if (iAiDefendingSpot<10){
+                aiSpot = view.viewWithTag(iAiDefendingSpot) as! UIButton
+                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                board[iAiDefendingSpot-1] = aiAs
+            }else{
+                aiPlayed = false
+                if (bAiGoesFirst == true ){
+                    _ = aiCornerPlay()
+                }else{
+                    if (board[4] == " "){
+                        aiSpot = view.viewWithTag(5) as! UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                        board[4] = aiAs
+                    }else if (board[4] == aiAs){
+                        aiPlayed = aiMiddlePlay()
+                        if (aiPlayed == false){
+                            _ = aiCornerPlay()
+                        }
+                    }else if (board[4] == playerAs){
+                        aiPlayed = aiCornerPlay()
+                        if (aiPlayed == false){
+                            _ = aiMiddlePlay()
+                        }
+                    }
+                }
+            }
+        }
+        winner = checkWinner()
+        declareWinner()
+    }
     
     func aiSearching(target: String) -> Int{
         for combo in winningCombos{
@@ -159,11 +214,14 @@ class aiProViewController: UIViewController {
             let button = view.viewWithTag(i) as! UIButton
             button.setImage(nil, for: UIControlState())
         }
-        if (aiGoFirst == true){
-            aiGoFirst = false
+        if (bAiGoesFirst == true){
+            bAiGoesFirst = false
         }else{
-            aiGoFirst = true
-            _ = aiCornerPlay()
+            bAiGoesFirst = true
+            iRandomDelay = Double(arc4random_uniform(4))
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiGoesFirst), userInfo: nil, repeats: false)
         }
     }
     
@@ -175,42 +233,10 @@ class aiProViewController: UIViewController {
                 winner = checkWinner()
                 declareWinner()
                 if (winner == " "){
-                    iAiAttackingSpot = aiSearching(target: aiAs)
-                    if (iAiAttackingSpot<10){
-                        aiSpot = view.viewWithTag(iAiAttackingSpot) as! UIButton
-                        aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
-                        board[iAiAttackingSpot-1] = aiAs
-                    }else{
-                        iAiDefendingSpot = aiSearching(target: playerAs)
-                        if (iAiDefendingSpot<10){
-                            aiSpot = view.viewWithTag(iAiDefendingSpot) as! UIButton
-                            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
-                            board[iAiDefendingSpot-1] = aiAs
-                        }else{
-                            aiPlayed = false
-                            if (aiGoFirst == true ){
-                               _ = aiCornerPlay()
-                            }else{
-                                if (board[4] == " "){
-                                    aiSpot = view.viewWithTag(5) as! UIButton
-                                    aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
-                                    board[4] = aiAs
-                                }else if (board[4] == aiAs){
-                                    aiPlayed = aiMiddlePlay()
-                                    if (aiPlayed == false){
-                                       _ = aiCornerPlay()
-                                    }
-                                }else if (board[4] == playerAs){
-                                    aiPlayed = aiCornerPlay()
-                                    if (aiPlayed == false){
-                                        _ = aiMiddlePlay()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    winner = checkWinner()
-                    declareWinner()
+                    iRandomDelay = Double(arc4random_uniform(4))
+                    activityIndicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiPlay), userInfo: nil, repeats: false)
                 }
             }
         }

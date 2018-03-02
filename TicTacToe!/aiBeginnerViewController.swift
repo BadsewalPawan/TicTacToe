@@ -20,8 +20,10 @@ class aiBeginnerViewController: UIViewController {
     var iDrawCount:Int = 0
     var iAiCount:Int = 0
     var aiSpot:UIButton!
-    var randomSpot:Int!
+    var iRandomSpot:Int!
     var aiPlayed:Bool = false
+    var iTimer = Timer()
+    var iRandomDelay:Double!
     
     @IBOutlet var statelbl: UILabel!
     @IBOutlet var playAgainbtn: UIButton!
@@ -30,6 +32,7 @@ class aiBeginnerViewController: UIViewController {
     @IBOutlet var aiScorelbl: UILabel!
     @IBOutlet var boardHash: UIImageView!
     @IBOutlet var playerNamelbl: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     func checkWinner() -> (String){
         for combo in winningCombos{
@@ -93,17 +96,21 @@ class aiBeginnerViewController: UIViewController {
         }
     }
     
-    func aiPlay(){
+    @objc func aiPlay(){
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
         while (aiPlayed == false){
-            randomSpot = Int(arc4random_uniform(9))
-            if (board[randomSpot] == " "){
-                aiSpot = view.viewWithTag(randomSpot+1) as! UIButton
+            iRandomSpot = Int(arc4random_uniform(9))
+            if (board[iRandomSpot] == " "){
+                aiSpot = view.viewWithTag(iRandomSpot+1) as! UIButton
                 aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
-                board[randomSpot] = aiAs
+                board[iRandomSpot] = aiAs
                 aiPlayed = true
             }
         }
         aiPlayed = false
+        winner = checkWinner()
+        declareWinner()
     }
     
     @IBAction func playAgain(_ sender: UIButton) {
@@ -118,7 +125,11 @@ class aiBeginnerViewController: UIViewController {
             button.setImage(nil, for: UIControlState())
         }
         if (playerAs == winner){
-            aiPlay()
+            iRandomDelay = Double(arc4random_uniform(4))
+            print(iRandomDelay)
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiPlay), userInfo: nil, repeats: false)
         }
     }
     
@@ -130,9 +141,11 @@ class aiBeginnerViewController: UIViewController {
                 winner = checkWinner()
                 declareWinner()
                 if (winner == " "){
-                    aiPlay()
-                    winner = checkWinner()
-                    declareWinner()
+                    iRandomDelay = Double(arc4random_uniform(4))
+                    print(iRandomDelay)
+                    activityIndicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiPlay), userInfo: nil, repeats: false)
                 }
             }
         }

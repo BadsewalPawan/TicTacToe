@@ -156,6 +156,11 @@
                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-OV-Xd5">
+                                        <rect key="frame" x="276" y="469" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -165,6 +170,7 @@
                     </view>
                     <connections>
                         <outlet property="PlayerScorelbl" destination="638-sE-Kvm" id="op5-bV-Smg"/>
+                        <outlet property="activityIndicator" destination="G2F-OV-Xd5" id="bcD-jG-adc"/>
                         <outlet property="aiScorelbl" destination="TYa-rd-SY9" id="RFo-MR-nDq"/>
                         <outlet property="boardHash" destination="sdF-mW-NQ5" id="U7e-sd-1h6"/>
                         <outlet property="drawScorelbl" destination="ncp-Ng-4tw" id="Uxi-hW-i3V"/>
@@ -500,6 +506,11 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NGh-qY-eZ9">
+                                        <rect key="frame" x="276" y="469" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -509,6 +520,7 @@
                     </view>
                     <connections>
                         <outlet property="PlayerScorelbl" destination="O1f-g6-pkA" id="peJ-XA-4um"/>
+                        <outlet property="activityIndicator" destination="NGh-qY-eZ9" id="SQh-Lp-BAt"/>
                         <outlet property="aiScorelbl" destination="6bl-vj-cBD" id="ljD-gH-HLg"/>
                         <outlet property="boardHash" destination="dD3-3y-hXF" id="pn8-m0-zYl"/>
                         <outlet property="drawScorelbl" destination="Z9t-zu-jOM" id="KuQ-xb-NLH"/>
@@ -593,6 +605,7 @@
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db8-8n-WK2">
                                         <rect key="frame" x="120" y="244" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="NeonX"/>
                                         <connections>
                                             <action selector="action:" destination="Ikj-2y-4jJ" eventType="touchUpInside" id="jD5-WH-XDQ"/>
                                         </connections>
@@ -693,8 +706,9 @@
     <resources>
         <image name="Chalk#" width="2456" height="2436"/>
         <image name="ChalkXO" width="80" height="80"/>
+        <image name="NeonX" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nGC-7b-09H"/>
+        <segue reference="0ZC-kc-FNO"/>
     </inferredMetricsTieBreakers>
 </document>
