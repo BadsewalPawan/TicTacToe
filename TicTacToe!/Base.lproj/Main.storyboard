@@ -605,7 +605,6 @@
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db8-8n-WK2">
                                         <rect key="frame" x="120" y="244" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="NeonX"/>
                                         <connections>
                                             <action selector="action:" destination="Ikj-2y-4jJ" eventType="touchUpInside" id="jD5-WH-XDQ"/>
                                         </connections>
@@ -706,9 +705,8 @@
     <resources>
         <image name="Chalk#" width="2456" height="2436"/>
         <image name="ChalkXO" width="80" height="80"/>
-        <image name="NeonX" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0ZC-kc-FNO"/>
+        <segue reference="nGC-7b-09H"/>
     </inferredMetricsTieBreakers>
 </document>
