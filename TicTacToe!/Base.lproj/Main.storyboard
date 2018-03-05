@@ -603,7 +603,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db8-8n-WK2">
-                                        <rect key="frame" x="120" y="244" width="80" height="80"/>
+                                        <rect key="frame" x="-1068" y="-934" width="2456" height="2436"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="action:" destination="Ikj-2y-4jJ" eventType="touchUpInside" id="jD5-WH-XDQ"/>
