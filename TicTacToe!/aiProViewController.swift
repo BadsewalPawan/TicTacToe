@@ -134,6 +134,18 @@ class aiProViewController: UIViewController {
         }
         return false
     }
+    
+    func aiSearching(target: String) -> Int{
+        for combo in winningCombos{
+            for ix in 0...2{
+                if (board[combo[ix]] == " "){
+                    for iy in 0...2{
+                        for iz in 0...2{
+                            if (iz != iy && board[combo[iy]] == board[combo[iz]] && board[combo[iz]] == target){
+                                return (combo[ix]+1)
+                            }}}}}}
+        return 11
+    }
 
     @objc func aiGoesFirst(){
         activityIndicator.stopAnimating()
@@ -190,18 +202,6 @@ class aiProViewController: UIViewController {
         }
         winner = checkWinner()
         declareWinner()
-    }
-    
-    func aiSearching(target: String) -> Int{
-        for combo in winningCombos{
-            for ix in 0...2{
-                if (board[combo[ix]] == " "){
-                    for iy in 0...2{
-                        for iz in 0...2{
-                            if (iz != iy && board[combo[iy]] == board[combo[iz]] && board[combo[iz]] == target){
-                                return (combo[ix]+1)
-                            }}}}}}
-        return 11
     }
     
     @IBAction func playAgain(_ sender: UIButton) {

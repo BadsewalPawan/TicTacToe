@@ -153,10 +153,6 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
         return themes.count
     }
     
-    //func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    //    return themes[row]
-    //}
-    
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return NSAttributedString(string:themes[row],attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
     }
@@ -172,5 +168,25 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
