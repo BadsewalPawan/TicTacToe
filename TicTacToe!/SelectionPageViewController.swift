@@ -111,8 +111,12 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        player1Name = player1NameTextField.text!
-        player2Name = player2NameTextField.text!
+        if (player1NameTextField.text != ""){
+            player1Name = player1NameTextField.text!
+        }
+        if (player2NameTextField.text != ""){
+            player2Name = player2NameTextField.text!
+        }
         self.view.endEditing(true)
     }
     
@@ -168,12 +172,6 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-
-
-
-
 
 }
 
