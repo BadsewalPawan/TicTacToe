@@ -38,11 +38,11 @@ class FriendlyViewController: UIViewController {
                 for iCount in 1...9{
                     if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
                         if (board[iCount-1] == playerAs){
-                            dummyBtn = view.viewWithTag(iCount) as! UIButton
-                            dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                            dummyBtn = view.viewWithTag(iCount) as? UIButton
+                            dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                         }else if (board[iCount-1] == aiAs) {
-                            dummyBtn = view.viewWithTag(iCount) as! UIButton
-                            dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                            dummyBtn = view.viewWithTag(iCount) as? UIButton
+                            dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                         }
                     }
                 }
@@ -59,11 +59,11 @@ class FriendlyViewController: UIViewController {
             playAgainbtn.isHidden = false
             for iCount in 1...9{
                 if (board[iCount-1] == playerAs){
-                    dummyBtn = view.viewWithTag(iCount) as! UIButton
-                    dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                    dummyBtn = view.viewWithTag(iCount) as? UIButton
+                    dummyBtn.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                 }else if (board[iCount-1] == aiAs) {
-                    dummyBtn = view.viewWithTag(iCount) as! UIButton
-                    dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                    dummyBtn = view.viewWithTag(iCount) as? UIButton
+                    dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                 }
             }
             return "Draw"
@@ -84,7 +84,7 @@ class FriendlyViewController: UIViewController {
         }
         for i in 1...9{
             let button = view.viewWithTag(i) as! UIButton
-            button.setImage(nil, for: UIControlState())
+            button.setImage(nil, for: UIControl.State())
         }
     }
     
@@ -92,12 +92,12 @@ class FriendlyViewController: UIViewController {
         if(gameActive == true){
                 if (board[sender.tag-1] == " "){
                     if (playerActive == true){
-                        sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControlState())
+                        sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControl.State())
                         board[sender.tag-1] = playerAs
                         playerActive = false
                         statelbl.text = "\(player2Name)'s turn"
                     }else{
-                        sender.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                        sender.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                         board[sender.tag-1] = aiAs
                         playerActive = true
                         statelbl.text = "\(player1Name)'s turn"
@@ -128,6 +128,9 @@ class FriendlyViewController: UIViewController {
         statelbl.text = "\(player1Name)'s turn"
         player1Namelbl.text = player1Name
         player2Namelbl.text = player2Name
+        player1Namelbl.adjustsFontSizeToFitWidth = true
+        player2Namelbl.adjustsFontSizeToFitWidth = true
+        statelbl.adjustsFontSizeToFitWidth = true
     }
     
     override func didReceiveMemoryWarning() {

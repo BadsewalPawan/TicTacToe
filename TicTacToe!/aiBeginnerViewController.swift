@@ -9,7 +9,7 @@
 import UIKit
 
 class aiBeginnerViewController: UIViewController {
-
+    
     var board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     let winningCombos = [ [0,1,2] , [3,4,5] , [6,7,8] , [0,3,6] , [1,4,7] , [2,5,8] , [0,4,8] , [2,4,6] ]
     var gameActive:Bool = true
@@ -34,20 +34,38 @@ class aiBeginnerViewController: UIViewController {
     @IBOutlet var playerNamelbl: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    func animateWinningCombo(targetBtnTag: Array<Int>){
+        var lol = 0
+        for btnTag in targetBtnTag{
+            lol += 1
+            print(lol)
+            aiSpot = view.viewWithTag(btnTag) as? UIButton
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+                self.aiSpot.frame = CGRect(x: self.aiSpot.frame.origin.x, y: self.aiSpot.frame.origin.y + 5, width: self.aiSpot.frame.width, height: self.aiSpot.frame.height)
+            },completion: { finish in
+                
+                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+                    self.aiSpot.frame = CGRect(x: self.aiSpot.frame.origin.x, y: self.aiSpot.frame.origin.y - 5, width: self.aiSpot.frame.width, height: self.aiSpot.frame.height)
+                },completion: nil)})
+        }
+    }
+    
+    
     func checkWinner() -> (String){
         for combo in winningCombos{
             if (board[combo[0]] != " " && board[combo[0]] == board[combo[1]] && board[combo[0]] == board[combo[2]]){
                 gameActive = false
                 playAgainbtn.isHidden = false
                 statelbl.isHidden = false
+                animateWinningCombo(targetBtnTag: [combo[0], combo[1], combo[2]])
                 for iCount in 1...9{
                     if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
                         if (board[iCount-1] == playerAs){
-                            aiSpot = view.viewWithTag(iCount) as! UIButton
-                            aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                            aiSpot = view.viewWithTag(iCount) as? UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                         }else if (board[iCount-1] == aiAs) {
-                            aiSpot = view.viewWithTag(iCount) as! UIButton
-                            aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                            aiSpot = view.viewWithTag(iCount) as? UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                         }
                     }
                 }
@@ -65,11 +83,11 @@ class aiBeginnerViewController: UIViewController {
             statelbl.isHidden = false
             for iCount in 1...9{
                     if (board[iCount-1] == playerAs){
-                        aiSpot = view.viewWithTag(iCount) as! UIButton
-                        aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                        aiSpot = view.viewWithTag(iCount) as? UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                     }else if (board[iCount-1] == aiAs) {
-                        aiSpot = view.viewWithTag(iCount) as! UIButton
-                        aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                        aiSpot = view.viewWithTag(iCount) as? UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                     }
             }
             return "Draw"
@@ -102,8 +120,8 @@ class aiBeginnerViewController: UIViewController {
         while (aiPlayed == false){
             iRandomSpot = Int(arc4random_uniform(9))
             if (board[iRandomSpot] == " "){
-                aiSpot = view.viewWithTag(iRandomSpot+1) as! UIButton
-                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                aiSpot = view.viewWithTag(iRandomSpot+1) as? UIButton
+                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                 board[iRandomSpot] = aiAs
                 aiPlayed = true
             }
@@ -122,11 +140,10 @@ class aiBeginnerViewController: UIViewController {
         statelbl.isHidden = true
         for i in 1...9{
             let button = view.viewWithTag(i) as! UIButton
-            button.setImage(nil, for: UIControlState())
+            button.setImage(nil, for: UIControl.State())
         }
         if (playerAs == winner){
             iRandomDelay = Double(arc4random_uniform(4))
-            print(iRandomDelay)
             activityIndicator.startAnimating()
             UIApplication.shared.beginIgnoringInteractionEvents()
             iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiPlay), userInfo: nil, repeats: false)
@@ -136,13 +153,12 @@ class aiBeginnerViewController: UIViewController {
     @IBAction func action(_ sender: UIButton) {
         if(gameActive == true){
             if (board[sender.tag-1] == " "){
-                sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControlState())
+                sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControl.State())
                 board[sender.tag-1] = playerAs
                 winner = checkWinner()
                 declareWinner()
                 if (winner == " "){
                     iRandomDelay = Double(arc4random_uniform(4))
-                    print(iRandomDelay)
                     activityIndicator.startAnimating()
                     UIApplication.shared.beginIgnoringInteractionEvents()
                     iTimer = Timer.scheduledTimer(timeInterval: iRandomDelay, target: self, selector: #selector(aiPlay), userInfo: nil, repeats: false)
@@ -155,6 +171,8 @@ class aiBeginnerViewController: UIViewController {
         super.viewDidLoad()
         boardHash.image = UIImage(named: "\(themeSelected)#")
         playerNamelbl.text = player1Name
+        playerNamelbl.adjustsFontSizeToFitWidth = true
+        statelbl.adjustsFontSizeToFitWidth = true
     }
     
     override func didReceiveMemoryWarning() {

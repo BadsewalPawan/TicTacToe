@@ -15,10 +15,10 @@ var playerAs:String = "X"
 var aiAs:String = "O"
 var player1Name:String = "Player 1"
 var player2Name:String = "Player 2"
+var selectedThemeRowComponent:Int = 0
 
 class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
-    var playWithAI:Bool! = true
     var proAi:Bool? = false
     var AudioPlayer: AVAudioPlayer!
     var playerTime:Double!
@@ -29,13 +29,14 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet var aiBtn: UIButton!
     @IBOutlet var friendBtn: UIButton!
     @IBOutlet var themePicker: UIPickerView!
-    @IBOutlet var themeSelectionbtn: UIButton!
+    @IBOutlet var themePreview: UIImageView!
     @IBOutlet var friendlyPlayBtn: UIButton!
     @IBOutlet var beginneraiPlayBtn: UIButton!
     @IBOutlet var proaiPlayBtn: UIButton!
     @IBOutlet var segment: UISegmentedControl!
     @IBOutlet var player1NameTextField: UITextField!
     @IBOutlet var player2NameTextField: UITextField!
+    @IBAction func unwindToSelectionVC(_ sender: UIStoryboardSegue) {}
     
     func playAudio(){
         let path = Bundle.main.path(forResource: "BackgroundMusic" , ofType: "mp3")!
@@ -54,6 +55,7 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBAction func selection(_ sender: UIButton) {
         friendlyPlayBtn.isHidden = true
         beginneraiPlayBtn.isHidden = true
+        proaiPlayBtn.isHidden = true
         player2NameTextField.isHidden = true
         switch sender.tag {
         case 1:
@@ -61,12 +63,10 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
             aiBtn.isSelected = true
             beginnerBtn.isHidden = false
             proBtn.isHidden = false
-            playWithAI = true
         case 2:
             beginnerBtn.isHidden = true
             proBtn.isHidden = true
             aiBtn.isSelected = false
-            playWithAI = false
             beginnerBtn.isSelected = false
             proBtn.isSelected = false
             friendBtn.isSelected = true
@@ -77,10 +77,8 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
             proBtn.isSelected = false
             beginnerBtn.isSelected = true
             beginneraiPlayBtn.isHidden = false
-            proaiPlayBtn.isHidden = true
         case 4:
             beginnerBtn.isSelected = false
-            beginneraiPlayBtn.isHidden = true
             proAi = true
             proBtn.isSelected = true
             proaiPlayBtn.isHidden = false
@@ -122,6 +120,7 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        themePreview.frame.size.width = themePreview.frame.size.height
         if (firstTimeLoaded == true){
             playAudio()
             firstTimeLoaded = false
@@ -136,18 +135,12 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         player1NameTextField.delegate = self
         player2NameTextField.delegate = self
-        themeSelectionbtn.setImage(UIImage(named: "\(themeSelected)XO"), for: UIControlState())
-        themePicker.isHidden = true
+        themePreview.image = UIImage(named: "\(themeSelected)XO")
         themePicker.delegate = self
         themePicker.dataSource = self
+        themePicker.selectedRow(inComponent: selectedThemeRowComponent)
     }
     
-    @IBAction func themeSelection(_ sender: UIButton) {
-        if (themePicker.isHidden == true){
-            themePicker.isHidden = false
-            themeSelectionbtn.isHidden = true
-        }
-    }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
@@ -158,33 +151,18 @@ class SelectionPageViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string:themes[row],attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+        return NSAttributedString(string:themes[row],attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        themeSelectionbtn.setImage(UIImage(named:"\(themes[row])XO"), for: UIControlState())
-        themePicker.isHidden = true
-        themeSelectionbtn.isHidden = false
+        themePreview.image = UIImage(named:"\(themes[row])XO")
         themeSelected = themes[row]
+        selectedThemeRowComponent = row
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

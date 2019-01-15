@@ -52,11 +52,11 @@ class aiProViewController: UIViewController {
                 for iCount in 1...9{
                     if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
                         if (board[iCount-1] == playerAs){
-                            aiSpot = view.viewWithTag(iCount) as! UIButton
-                            aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                            aiSpot = view.viewWithTag(iCount) as? UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                         }else if (board[iCount-1] == aiAs) {
-                            aiSpot = view.viewWithTag(iCount) as! UIButton
-                            aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                            aiSpot = view.viewWithTag(iCount) as? UIButton
+                            aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                         }
                     }
                 }
@@ -74,11 +74,11 @@ class aiProViewController: UIViewController {
             statelbl.isHidden = false
             for iCount in 1...9{
                 if (board[iCount-1] == playerAs){
-                    aiSpot = view.viewWithTag(iCount) as! UIButton
-                    aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControlState())
+                    aiSpot = view.viewWithTag(iCount) as? UIButton
+                    aiSpot.setImage(UIImage(named: themeSelected + playerAs + "Dull"), for: UIControl.State())
                 }else if (board[iCount-1] == aiAs) {
-                    aiSpot = view.viewWithTag(iCount) as! UIButton
-                    aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControlState())
+                    aiSpot = view.viewWithTag(iCount) as? UIButton
+                    aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                 }
             }
             return "Draw"
@@ -111,8 +111,8 @@ class aiProViewController: UIViewController {
             iAiPlaySpot = cornerSpots[iRemoveSpot]
             cornerSpots.remove(at: iRemoveSpot)
             if (board[iAiPlaySpot] == " "){
-                aiSpot = view.viewWithTag(iAiPlaySpot+1) as! UIButton
-                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                aiSpot = view.viewWithTag(iAiPlaySpot+1) as? UIButton
+                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                 board[iAiPlaySpot] = aiAs
                 return true
             }
@@ -126,8 +126,8 @@ class aiProViewController: UIViewController {
             iAiPlaySpot = middleSpots[iRemoveSpot]
             middleSpots.remove(at: iRemoveSpot)
             if (board[iAiPlaySpot] == " "){
-                aiSpot = view.viewWithTag(iAiPlaySpot+1) as! UIButton
-                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                aiSpot = view.viewWithTag(iAiPlaySpot+1) as? UIButton
+                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                 board[iAiPlaySpot] = aiAs
                 return true
             }
@@ -153,8 +153,8 @@ class aiProViewController: UIViewController {
         if(Int(arc4random_uniform(2)) == 0){
             _ = aiCornerPlay()
         }else{
-            aiSpot = view.viewWithTag(5) as! UIButton
-            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+            aiSpot = view.viewWithTag(5) as? UIButton
+            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
             board[4] = aiAs
         }
         
@@ -165,14 +165,14 @@ class aiProViewController: UIViewController {
         UIApplication.shared.endIgnoringInteractionEvents()
         iAiAttackingSpot = aiSearching(target: aiAs)
         if (iAiAttackingSpot<10){
-            aiSpot = view.viewWithTag(iAiAttackingSpot) as! UIButton
-            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+            aiSpot = view.viewWithTag(iAiAttackingSpot) as? UIButton
+            aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
             board[iAiAttackingSpot-1] = aiAs
         }else{
             iAiDefendingSpot = aiSearching(target: playerAs)
             if (iAiDefendingSpot<10){
-                aiSpot = view.viewWithTag(iAiDefendingSpot) as! UIButton
-                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                aiSpot = view.viewWithTag(iAiDefendingSpot) as? UIButton
+                aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                 board[iAiDefendingSpot-1] = aiAs
             }else{
                 aiPlayed = false
@@ -183,8 +183,8 @@ class aiProViewController: UIViewController {
                     }
                 }else{
                     if (board[4] == " "){
-                        aiSpot = view.viewWithTag(5) as! UIButton
-                        aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControlState())
+                        aiSpot = view.viewWithTag(5) as? UIButton
+                        aiSpot.setImage(UIImage(named: themeSelected + aiAs), for: UIControl.State())
                         board[4] = aiAs
                     }else if (board[4] == aiAs){
                         aiPlayed = aiMiddlePlay()
@@ -215,7 +215,7 @@ class aiProViewController: UIViewController {
         middleSpots = [1,3,5,7]
         for i in 1...9{
             let button = view.viewWithTag(i) as! UIButton
-            button.setImage(nil, for: UIControlState())
+            button.setImage(nil, for: UIControl.State())
         }
         if (bAiGoesFirst == true){
             bAiGoesFirst = false
@@ -231,7 +231,7 @@ class aiProViewController: UIViewController {
     @IBAction func action(_ sender: UIButton) {
         if(gameActive == true){
             if (board[sender.tag-1] == " "){
-                sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControlState())
+                sender.setImage(UIImage(named: themeSelected + playerAs), for: UIControl.State())
                 board[sender.tag-1] = playerAs
                 winner = checkWinner()
                 declareWinner()
@@ -249,6 +249,8 @@ class aiProViewController: UIViewController {
         super.viewDidLoad()
         boardHash.image = UIImage(named: "\(themeSelected)#")
         playerNamelbl.text = player1Name
+        playerNamelbl.adjustsFontSizeToFitWidth = true
+        statelbl.adjustsFontSizeToFitWidth = true
     }
     
     override func didReceiveMemoryWarning() {

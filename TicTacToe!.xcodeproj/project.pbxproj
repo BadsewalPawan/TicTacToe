@@ -10,11 +10,11 @@
 		302A8A3A2039AA2B00AE2CEF /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302A8A392039AA2B00AE2CEF /* BackgroundMusic.mp3 */; };
 		3030ADB620496437008B20DF /* FriendlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3030ADB520496437008B20DF /* FriendlyViewController.swift */; };
 		30426283203B0E74005A8A44 /* aiProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30426282203B0E74005A8A44 /* aiProViewController.swift */; };
+		304B96C12144EF3700631A84 /* launchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304B96C02144EF3700631A84 /* launchVC.swift */; };
 		3065E6C62039BA0200FDB95B /* aiBeginnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */; };
 		30E36FAD203997E90045A625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E36FAC203997E90045A625 /* AppDelegate.swift */; };
 		30E36FB2203997E90045A625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E36FB0203997E90045A625 /* Main.storyboard */; };
 		30E36FB4203997E90045A625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E36FB3203997E90045A625 /* Assets.xcassets */; };
-		30E36FB7203997E90045A625 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E36FB5203997E90045A625 /* LaunchScreen.storyboard */; };
 		30EE22FF20DF6CF400FD41B7 /* SelectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE22FE20DF6CF400FD41B7 /* SelectionPageViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,11 +23,11 @@
 		3030ADB520496437008B20DF /* FriendlyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendlyViewController.swift; sourceTree = "<group>"; };
 		303E3B31203DB3E200C89E0D /* TicTacToe!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TicTacToe!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30426282203B0E74005A8A44 /* aiProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiProViewController.swift; sourceTree = "<group>"; };
+		304B96C02144EF3700631A84 /* launchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = launchVC.swift; sourceTree = "<group>"; };
 		3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiBeginnerViewController.swift; sourceTree = "<group>"; };
 		30E36FAC203997E90045A625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30E36FB1203997E90045A625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30E36FB3203997E90045A625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30E36FB6203997E90045A625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30E36FB8203997E90045A625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30EE22FE20DF6CF400FD41B7 /* SelectionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,13 +56,13 @@
 			children = (
 				302A8A392039AA2B00AE2CEF /* BackgroundMusic.mp3 */,
 				30E36FAC203997E90045A625 /* AppDelegate.swift */,
+				304B96C02144EF3700631A84 /* launchVC.swift */,
 				3065E6C52039BA0200FDB95B /* aiBeginnerViewController.swift */,
 				30426282203B0E74005A8A44 /* aiProViewController.swift */,
 				3030ADB520496437008B20DF /* FriendlyViewController.swift */,
 				30EE22FE20DF6CF400FD41B7 /* SelectionPageViewController.swift */,
 				30E36FB0203997E90045A625 /* Main.storyboard */,
 				30E36FB3203997E90045A625 /* Assets.xcassets */,
-				30E36FB5203997E90045A625 /* LaunchScreen.storyboard */,
 				30E36FB8203997E90045A625 /* Info.plist */,
 			);
 			path = "TicTacToe!";
@@ -100,6 +100,7 @@
 				TargetAttributes = {
 					30E36FA8203997E90045A625 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -127,7 +128,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E36FB7203997E90045A625 /* LaunchScreen.storyboard in Resources */,
 				30E36FB4203997E90045A625 /* Assets.xcassets in Resources */,
 				302A8A3A2039AA2B00AE2CEF /* BackgroundMusic.mp3 in Resources */,
 				30E36FB2203997E90045A625 /* Main.storyboard in Resources */,
@@ -142,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30426283203B0E74005A8A44 /* aiProViewController.swift in Sources */,
+				304B96C12144EF3700631A84 /* launchVC.swift in Sources */,
 				3065E6C62039BA0200FDB95B /* aiBeginnerViewController.swift in Sources */,
 				30EE22FF20DF6CF400FD41B7 /* SelectionPageViewController.swift in Sources */,
 				30E36FAD203997E90045A625 /* AppDelegate.swift in Sources */,
@@ -158,14 +159,6 @@
 				30E36FB1203997E90045A625 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		30E36FB5203997E90045A625 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30E36FB6203997E90045A625 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -293,7 +286,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmbverve.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -309,7 +302,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmbverve.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

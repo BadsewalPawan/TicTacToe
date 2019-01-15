@@ -1,8 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "LaunchPageFinal.jpg"
+      "idiom" : "iphone",
+      "filename" : "launchPageiPhone.jpg"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "launchPageiPad.jpg"
     }
   ],
   "info" : {
