@@ -44,6 +44,19 @@ class FriendlyViewController: UIViewController {
                             dummyBtn = view.viewWithTag(iCount) as? UIButton
                             dummyBtn.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                         }
+                    }else{
+                        let btn = view.viewWithTag(iCount) as? UIButton
+                        btn!.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                        UIView.animate(withDuration: 2.0,
+                                       delay: 0,
+                                       usingSpringWithDamping: CGFloat(0.20),
+                                       initialSpringVelocity: CGFloat(6.0),
+                                       options: UIView.AnimationOptions.curveEaseIn,
+                                       animations: {
+                                        btn!.transform = CGAffineTransform.identity
+                        },
+                                       completion: { Void in()  }
+                        )
                     }
                 }
                 return board[combo[0]]

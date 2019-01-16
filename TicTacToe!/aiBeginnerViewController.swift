@@ -34,22 +34,6 @@ class aiBeginnerViewController: UIViewController {
     @IBOutlet var playerNamelbl: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
-    func animateWinningCombo(targetBtnTag: Array<Int>){
-        var lol = 0
-        for btnTag in targetBtnTag{
-            lol += 1
-            print(lol)
-            aiSpot = view.viewWithTag(btnTag) as? UIButton
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-                self.aiSpot.frame = CGRect(x: self.aiSpot.frame.origin.x, y: self.aiSpot.frame.origin.y + 5, width: self.aiSpot.frame.width, height: self.aiSpot.frame.height)
-            },completion: { finish in
-                
-                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-                    self.aiSpot.frame = CGRect(x: self.aiSpot.frame.origin.x, y: self.aiSpot.frame.origin.y - 5, width: self.aiSpot.frame.width, height: self.aiSpot.frame.height)
-                },completion: nil)})
-        }
-    }
-    
     
     func checkWinner() -> (String){
         for combo in winningCombos{
@@ -57,7 +41,6 @@ class aiBeginnerViewController: UIViewController {
                 gameActive = false
                 playAgainbtn.isHidden = false
                 statelbl.isHidden = false
-                animateWinningCombo(targetBtnTag: [combo[0], combo[1], combo[2]])
                 for iCount in 1...9{
                     if(iCount-1 != combo[0] && iCount-1 != combo[1] && iCount-1 != combo[2]){
                         if (board[iCount-1] == playerAs){
@@ -67,6 +50,19 @@ class aiBeginnerViewController: UIViewController {
                             aiSpot = view.viewWithTag(iCount) as? UIButton
                             aiSpot.setImage(UIImage(named: themeSelected + aiAs + "Dull"), for: UIControl.State())
                         }
+                    }else{
+                        let btn = view.viewWithTag(iCount) as? UIButton
+                        btn!.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                        UIView.animate(withDuration: 2.0,
+                                       delay: 0,
+                                       usingSpringWithDamping: CGFloat(0.20),
+                                       initialSpringVelocity: CGFloat(6.0),
+                                       options: UIView.AnimationOptions.curveEaseIn,
+                                       animations: {
+                                        btn!.transform = CGAffineTransform.identity
+                        },
+                                       completion: { Void in()  }
+                        )
                     }
                 }
                 return board[combo[0]]
